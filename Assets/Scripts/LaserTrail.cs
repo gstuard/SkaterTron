@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LaserTrail : MonoBehaviour
 {
+    public GameObject laser_panel;
 
     RaycastHit[] raycasts;
-    Vector3[] locations;
     Vector3 last_location;
 
     // Start is called before the first frame update
@@ -17,11 +17,9 @@ public class LaserTrail : MonoBehaviour
 
     void AddTrail(Vector3 new_location)
     {
-        //locations 
+        //Vector3 direction = new_location - last_location;
 
-        Vector3 direction = new_location - last_location;
-
-        //Ray new_ray = Physics.Raycast(last_location, direction, Vector3.Distance(new_location, last_location));
+        Instantiate(laser_panel, transform);
     }
 
     // Update is called once per frame
