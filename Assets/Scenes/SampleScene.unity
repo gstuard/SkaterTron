@@ -542,6 +542,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5718449265762200989, guid: 2a42242ccc47a458990a052fbd8a4355, type: 3}
+      propertyPath: jumpStrength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5718449265762200989, guid: 2a42242ccc47a458990a052fbd8a4355, type: 3}
       propertyPath: camera_script
       value: 
       objectReference: {fileID: 963194229}

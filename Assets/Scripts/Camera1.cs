@@ -29,6 +29,6 @@ public class Camera1 : MonoBehaviour
     {
         transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, rotationSpeed * Time.deltaTime);
         transform.position = target.position - transform.forward * distance;
-        transform.position = new Vector3(transform.position.x, 3, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
     }
 }
