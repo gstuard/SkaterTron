@@ -8,6 +8,8 @@ public class Skateboard : MonoBehaviour
     internal float speed;
     public Camera1 camera_script;
 
+    public float jumpStrength;
+
     internal Vector3 direction;
     internal Rigidbody rb;
 
@@ -37,6 +39,11 @@ public class Skateboard : MonoBehaviour
         {
             //direction = new Vector3(-1, 0, 0);
             Turn(-90f);
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
         }
 
         //if (Input.GetKeyDown(KeyCode.UpArrow))
