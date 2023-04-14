@@ -13,6 +13,11 @@ public class Skateboard : MonoBehaviour
     internal Vector3 direction;
     internal Rigidbody rb;
 
+    public GameObject laser_panel;
+
+    RaycastHit[] raycasts;
+    Vector3 last_location;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +26,16 @@ public class Skateboard : MonoBehaviour
         direction = Vector3.right;
     }
 
+    void AddTrail(Vector3 new_location)
+    {
+        Instantiate(laser_panel, transform);
+    }
+
     void Turn(float turn_degrees)
     {
         transform.Rotate(0, turn_degrees, 0);
         direction = Quaternion.AngleAxis(turn_degrees, Vector3.up) * direction;
+
     }
 
     // Update is called once per frame
