@@ -5,7 +5,7 @@ using UnityEngine;
 public class FloorController : MonoBehaviour
 {
     public static int MaximumRisingPins = 320;
-    public static int MaximumBufferedPins = 20;
+    public static int MaximumBufferedPins = 30;
 
     public float pin_speed;
     public float pin_height;
