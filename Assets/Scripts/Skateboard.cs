@@ -13,7 +13,7 @@ public class Skateboard : MonoBehaviour
     internal Vector3 direction;
     internal Rigidbody rb;
 
-    public GameObject laser_panel;
+    public GameObject FloorController;
 
     RaycastHit[] raycasts;
     Vector3 last_location;
@@ -26,10 +26,10 @@ public class Skateboard : MonoBehaviour
         direction = Vector3.right;
     }
 
-    void AddTrail(Vector3 new_location)
-    {
-        Instantiate(laser_panel, transform);
-    }
+    //void AddTrail(Vector3 new_location)
+    //{
+    //    Instantiate(laser_panel, transform);
+    //}
 
     void Turn(float turn_degrees)
     {
@@ -67,5 +67,9 @@ public class Skateboard : MonoBehaviour
         //}
 
         rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        FloorController.GetComponent<FloorController>().Add_Pin(collision.transform);
     }
 }
