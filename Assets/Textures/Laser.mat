@@ -72,6 +72,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EndY: 15
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -83,13 +84,14 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _StartY: 14
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _ChangedColor: {r: 0, g: 0.23288774, b: 1, a: 0}
+    - _ChangedColor: {r: 1, g: 0, b: 0.93746996, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OriginalColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OriginalColor: {r: 0, g: 0.9111967, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1979714169405360812
 MonoBehaviour:

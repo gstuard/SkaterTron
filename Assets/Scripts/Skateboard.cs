@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Skateboard : MonoBehaviour
 {
+    public bool sharp_turns;
+
     public float base_speed;
     internal float speed;
-    public Camera1 camera_script;
-
+    public float turn_speed;
     public float jumpStrength;
+
+    public Camera1 camera_script;
 
     internal Vector3 direction;
     internal Rigidbody rb;
@@ -23,7 +26,7 @@ public class Skateboard : MonoBehaviour
     {
         speed = base_speed;
         rb = GetComponent<Rigidbody>();
-        direction = Vector3.right;
+        direction = Vector3.forward;
     }
 
     //void AddTrail(Vector3 new_location)
@@ -41,15 +44,27 @@ public class Skateboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (sharp_turns)
         {
-            //direction = new Vector3(1,0,0);
-            Turn(90f);
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                Turn(90f);
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                Turn(-90f);
+            }
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        else
         {
-            //direction = new Vector3(-1, 0, 0);
-            Turn(-90f);
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                Turn(Time.deltaTime * turn_speed);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                Turn(-Time.deltaTime * turn_speed);
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
@@ -68,7 +83,7 @@ public class Skateboard : MonoBehaviour
 
         rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionExit(Collision collision)
     {
         FloorController.GetComponent<FloorController>().Add_Pin(collision.transform);
     }

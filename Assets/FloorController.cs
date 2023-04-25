@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class FloorController : MonoBehaviour
 {
+    public bool floor_active;
+
     public static int MaximumRisingPins = 320;
-    public static int MaximumBufferedPins = 30;
+    public static int MaximumBufferedPins = 32;
 
     public float pin_speed;
     public float pin_height;
@@ -40,18 +42,21 @@ public class FloorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int pin_index = 0; pin_index < MaximumRisingPins; pin_index++)
+        if (floor_active)
         {
-            Debug.Log(pin_index);
+            for (int pin_index = 0; pin_index < MaximumRisingPins; pin_index++)
+            {
+                Debug.Log(pin_index);
 
-            if (pins[pin_index] == null || pins[pin_index].position.y >= pin_height)
-            {
-                // skip
-            }
-            else
-            {
-                float new_y = pins[pin_index].position.y + pin_speed * Time.deltaTime;
-                pins[pin_index].position = new Vector3(pins[pin_index].position.x, new_y, pins[pin_index].position.z);
+                if (pins[pin_index] == null || pins[pin_index].position.y >= pin_height)
+                {
+                    // skip
+                }
+                else
+                {
+                    float new_y = pins[pin_index].position.y + pin_speed * Time.deltaTime;
+                    pins[pin_index].position = new Vector3(pins[pin_index].position.x, new_y, pins[pin_index].position.z);
+                }
             }
         }
     }
