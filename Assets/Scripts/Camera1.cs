@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Camera1 : MonoBehaviour
 {
-    public Transform target;
+    public GameObject target;
 
     public LayerMask obstacleLayerMask;
 
@@ -15,20 +15,18 @@ public class Camera1 : MonoBehaviour
     public float maxPitch;
 
     private float distance;
-    private float pitch;
-    private float yaw;
+    private float pitch = 45;
+    private float yaw = 0;
 
     void Start()
     {
-        pitch = 45;
-        yaw = 0;
         distance = max_distance;
     }
 
     void Update()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, target.rotation, rotationSpeed * Time.deltaTime);
-        transform.position = target.position - transform.forward * distance;
+        transform.rotation = Quaternion.Slerp(transform.rotation, target.transform.rotation, rotationSpeed * Time.deltaTime);
+        transform.position = target.transform.position - transform.forward * distance;
         transform.position = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
     }
 }

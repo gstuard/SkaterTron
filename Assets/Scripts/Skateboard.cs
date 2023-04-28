@@ -23,6 +23,11 @@ public class Skateboard : MonoBehaviour
     RaycastHit[] raycasts;
     Vector3 last_location;
 
+    // Controls
+    public KeyCode right = KeyCode.RightArrow;
+    public KeyCode left = KeyCode.LeftArrow;
+    public KeyCode jump = KeyCode.Space;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,28 +53,28 @@ public class Skateboard : MonoBehaviour
     {
         if (sharp_turns)
         {
-            if (Input.GetKeyUp(KeyCode.RightArrow))
+            if (Input.GetKeyUp(right))
             {
                 Turn(90f);
             }
-            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            if (Input.GetKeyUp(left))
             {
                 Turn(-90f);
             }
         }
         else
         {
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(right))
             {
                 Turn(Time.deltaTime * turn_speed);
             }
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(left))
             {
                 Turn(-Time.deltaTime * turn_speed);
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(jump))
         {
             rb.velocity = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
         }
