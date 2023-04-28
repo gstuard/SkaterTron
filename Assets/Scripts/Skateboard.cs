@@ -85,15 +85,6 @@ public class Skateboard : MonoBehaviour
             jump_timer -= Time.deltaTime;
         }
 
-        //if (Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    direction = new Vector3(0, 0, 1);
-        //}
-        //if (Input.GetKeyDown(KeyCode.DownArrow))
-        //{
-        //    direction = new Vector3(0, 0, -1);
-        //}
-
         rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
 
         if (Input.GetKey(KeyCode.X))
@@ -147,7 +138,7 @@ public class Skateboard : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, .5f, beam_layer))
         {
-            FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform);
+            FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform, true);
         }
     }
 

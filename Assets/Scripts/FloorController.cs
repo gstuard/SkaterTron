@@ -18,19 +18,21 @@ public class FloorController : MonoBehaviour
     internal int buffer_index = 0;
     internal int array_index = 0;
 
-    private Renderer myrenderer;
-
     public Material red;
     public Material blue;
 
     // Start is called before the first frame update
     void Start()
     {
-        myrenderer = GetComponent<Renderer>();
+
     }
 
-    public void Add_Pin(Transform new_pin)
+    public void Add_Pin(Transform new_pin, bool is_red)
     {
+        //if (is_red)
+        //{
+        //    transform.GetComponent<Renderer>().sharedMaterial = red;
+        //}
         if (array_index >= MaximumRisingPins)
         {
             array_index = 0;
@@ -56,7 +58,6 @@ public class FloorController : MonoBehaviour
                 }
                 else
                 {
-                    pins[pin_index].GetComponent<Renderer>().sharedmaterial = dwauhaiwhd;
                     float new_y = pins[pin_index].position.y + pin_speed * Time.deltaTime;
                     pins[pin_index].position = new Vector3(pins[pin_index].position.x, new_y, pins[pin_index].position.z);
                 }

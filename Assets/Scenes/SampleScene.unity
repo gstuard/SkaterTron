@@ -747,6 +747,8 @@ MonoBehaviour:
   pin_speed: 2
   pin_height: 13.5
   pin_low_height: 0
+  red: {fileID: 2100000, guid: c7c2af98d545e4a69b0c7b557e1118f6, type: 2}
+  blue: {fileID: 2100000, guid: d1a6cc3d7f5914a0780950a2d0100436, type: 2}
 --- !u!4 &55332770
 Transform:
   m_ObjectHideFlags: 0
