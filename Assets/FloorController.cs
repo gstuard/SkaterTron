@@ -7,7 +7,7 @@ public class FloorController : MonoBehaviour
     public bool floor_active;
 
     public static int MaximumRisingPins = 320;
-    public static int MaximumBufferedPins = 32;
+    public static int MaximumBufferedPins = 16;
 
     public float pin_speed;
     public float pin_height;
@@ -46,8 +46,6 @@ public class FloorController : MonoBehaviour
         {
             for (int pin_index = 0; pin_index < MaximumRisingPins; pin_index++)
             {
-                Debug.Log(pin_index);
-
                 if (pins[pin_index] == null || pins[pin_index].position.y >= pin_height)
                 {
                     // skip

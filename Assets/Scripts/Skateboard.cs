@@ -11,6 +11,8 @@ public class Skateboard : MonoBehaviour
     public float turn_speed;
     public float jumpStrength;
 
+    public LayerMask beam_layer;
+
     public Camera1 camera_script;
 
     internal Vector3 direction;
@@ -82,9 +84,47 @@ public class Skateboard : MonoBehaviour
         //}
 
         rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
+
+        CastFloorRay(new Vector3(0.1f, 0, 0.1f));
+        CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
+        CastFloorRay(new Vector3(0.1f, 0, -0.1f));
+        CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
+
+        if (Dies())
+        {
+            Debug.Log("Dead");
+        }
     }
-    private void OnCollisionExit(Collision collision)
+
+
+    bool Dies()
     {
-        FloorController.GetComponent<FloorController>().Add_Pin(collision.transform);
+        Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+        Ray ray = new Ray(origin, transform.forward);
+        Debug.DrawRay(origin, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, .5f, beam_layer))
+        {
+            return true;
+        }
+        return false;
     }
+
+
+    void CastFloorRay(Vector3 offset)
+    {
+        Vector3 origin = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, transform.position.z + offset.z);
+        Ray ray = new Ray(origin, Vector3.down);
+        Debug.DrawRay(origin, Vector3.down);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, .5f, beam_layer))
+        {
+            FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform);
+        }
+    }
+
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    FloorController.GetComponent<FloorController>().Add_Pin(collision.transform);
+    //}
 }
