@@ -7,7 +7,7 @@ public class FloorController : MonoBehaviour
     public bool floor_active;
 
     public static int MaximumRisingPins = 320;
-    public static int MaximumBufferedPins = 16;
+    public static int MaximumBufferedPins = 24;
 
     public float pin_speed;
     public float pin_height;

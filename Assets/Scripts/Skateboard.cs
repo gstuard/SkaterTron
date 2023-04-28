@@ -10,6 +10,7 @@ public class Skateboard : MonoBehaviour
     internal float speed;
     public float turn_speed;
     public float jumpStrength;
+    internal float jump_timer = 0f;
 
     public LayerMask beam_layer;
 
@@ -74,9 +75,14 @@ public class Skateboard : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(jump))
+        if (Input.GetKeyUp(KeyCode.Space) && jump_timer <= 0)
         {
+            jump_timer = 1.0f;
             rb.velocity = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
+        }
+        if (jump_timer > 0)
+        {
+            jump_timer -= Time.deltaTime;
         }
 
         //if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -90,15 +96,32 @@ public class Skateboard : MonoBehaviour
 
         rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
 
-        CastFloorRay(new Vector3(0.1f, 0, 0.1f));
-        CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
-        CastFloorRay(new Vector3(0.1f, 0, -0.1f));
-        CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
+        if (Input.GetKey(KeyCode.X))
+        {
+            speed = base_speed * 1.75f;
+        }
+        else
+        {
+            CastFloorRay(new Vector3(0.1f, 0, 0.1f));
+            CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
+            CastFloorRay(new Vector3(0.1f, 0, -0.1f));
+            CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
+            speed = base_speed;
+        }
 
         if (Dies())
         {
             Debug.Log("Dead");
+            Explode();
         }
+    }
+
+
+    void Explode()
+    {
+        var exp = GetComponentInChildren<ParticleSystem>();
+        exp.Play();
+        Destroy(gameObject, 2.0f);
     }
 
 
