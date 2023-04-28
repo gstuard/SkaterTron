@@ -28,6 +28,7 @@ public class Skateboard : MonoBehaviour
     public KeyCode right = KeyCode.RightArrow;
     public KeyCode left = KeyCode.LeftArrow;
     public KeyCode jump = KeyCode.Space;
+    public KeyCode boost = KeyCode.X;
 
     // Start is called before the first frame update
     void Start()
@@ -87,7 +88,7 @@ public class Skateboard : MonoBehaviour
 
         rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(boost))
         {
             speed = base_speed * 1.75f;
         }
