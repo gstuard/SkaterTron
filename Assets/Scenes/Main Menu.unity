@@ -4520,7 +4520,7 @@ MonoBehaviour:
   theRoomButton: {fileID: 762966480}
   nameInputScreen: {fileID: 994029124}
   nameInput: {fileID: 2041066834}
-  levelToPlay: 
+  levelToPlay: SampleScene
   startButton: {fileID: 1141604367}
   roomTestButton: {fileID: 1517566817}
 --- !u!1 &1607979075
