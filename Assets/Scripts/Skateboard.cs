@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Skateboard : MonoBehaviour
+public class Skateboard : MonoBehaviourPunCallbacks
 {
     public bool sharp_turns;
 
@@ -21,6 +22,8 @@ public class Skateboard : MonoBehaviour
 
     public GameObject FloorController;
 
+    private Camera cam;
+
     RaycastHit[] raycasts;
     Vector3 last_location;
 
@@ -34,6 +37,9 @@ public class Skateboard : MonoBehaviour
     void Start()
     {
         speed = base_speed;
+
+        cam = Camera.main;
+
         rb = GetComponent<Rigidbody>();
         direction = Vector3.forward;
     }
@@ -53,58 +59,61 @@ public class Skateboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sharp_turns)
+        if (photonView.IsMine)
         {
-            if (Input.GetKeyUp(right))
+            if (sharp_turns)
             {
-                Turn(90f);
+                if (Input.GetKeyUp(right))
+                {
+                    Turn(90f);
+                }
+                if (Input.GetKeyUp(left))
+                {
+                    Turn(-90f);
+                }
             }
-            if (Input.GetKeyUp(left))
+            else
             {
-                Turn(-90f);
+                if (Input.GetKey(right))
+                {
+                    Turn(Time.deltaTime * turn_speed);
+                }
+                if (Input.GetKey(left))
+                {
+                    Turn(-Time.deltaTime * turn_speed);
+                }
             }
-        }
-        else
-        {
-            if (Input.GetKey(right))
+
+            if (Input.GetKeyUp(KeyCode.Space) && jump_timer <= 0)
             {
-                Turn(Time.deltaTime * turn_speed);
+                jump_timer = 1.0f;
+                rb.velocity = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
             }
-            if (Input.GetKey(left))
+            if (jump_timer > 0)
             {
-                Turn(-Time.deltaTime * turn_speed);
+                jump_timer -= Time.deltaTime;
             }
-        }
 
-        if (Input.GetKeyUp(KeyCode.Space) && jump_timer <= 0)
-        {
-            jump_timer = 1.0f;
-            rb.velocity = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
-        }
-        if (jump_timer > 0)
-        {
-            jump_timer -= Time.deltaTime;
-        }
+            rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
 
-        rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
+            if (Input.GetKey(KeyCode.X))
+            {
+                speed = base_speed * 1.75f;
+            }
+            else
+            {
+                CastFloorRay(new Vector3(0.1f, 0, 0.1f));
+                CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
+                CastFloorRay(new Vector3(0.1f, 0, -0.1f));
+                CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
+                speed = base_speed;
+            }
 
-        if (Input.GetKey(boost))
-        {
-            speed = base_speed * 1.75f;
-        }
-        else
-        {
-            CastFloorRay(new Vector3(0.1f, 0, 0.1f));
-            CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
-            CastFloorRay(new Vector3(0.1f, 0, -0.1f));
-            CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
-            speed = base_speed;
-        }
-
-        if (Dies())
-        {
-            Debug.Log("Dead");
-            Explode();
+            if (Dies())
+            {
+                Debug.Log("Dead");
+                Explode();
+            }
         }
     }
 
@@ -147,4 +156,14 @@ public class Skateboard : MonoBehaviour
     //{
     //    FloorController.GetComponent<FloorController>().Add_Pin(collision.transform);
     //}
+
+    private void LateUpdate()
+    {
+
+        if (photonView.IsMine)
+        {
+            cam.transform.position = transform.position;
+            cam.transform.rotation = transform.rotation;
+        }
+    }
 }
