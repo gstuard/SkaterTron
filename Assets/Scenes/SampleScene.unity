@@ -745,7 +745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floor_active: 1
   pin_speed: 2
-  pin_height: 13.5
+  pin_height: 13.85
   pin_low_height: 0
   red: {fileID: 2100000, guid: c7c2af98d545e4a69b0c7b557e1118f6, type: 2}
   blue: {fileID: 2100000, guid: d1a6cc3d7f5914a0780950a2d0100436, type: 2}
@@ -2470,8 +2470,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 32.794758, y: 0.050000012, z: 33.152176}
-  m_Center: {x: 0.8973789, y: 0.4, z: -2.1739125}
+  m_Size: {x: 17.16936, y: 0.19999999, z: 18.033659}
+  m_Center: {x: 0.23668213, y: 0.4, z: 0.09216843}
 --- !u!4 &206549625
 Transform:
   m_ObjectHideFlags: 0
@@ -2480,8 +2480,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206549623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.50246, y: 15.32, z: 10.765759}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalPosition: {x: 39.50246, y: 13.64, z: 10.765759}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -8490,14 +8490,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 10, z: -15.34}
+  m_LocalRotation: {x: 0.18301274, y: 0.6830127, z: -0.18301274, w: 0.6830127}
+  m_LocalPosition: {x: 35, y: 17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 90, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8515,9 +8515,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   rotationSpeed: 3
+  max_height: 1.5
   max_distance: 6
-  minPitch: 5
-  maxPitch: 80
+  max_pitch: 0
 --- !u!1001 &970336341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16685,6 +16685,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 963194228}
     - target: {fileID: 1294310792863715289, guid: 82499092fea854d57b1dd032f593f35c, type: 3}
+      propertyPath: turnFactor
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294310792863715289, guid: 82499092fea854d57b1dd032f593f35c, type: 3}
+      propertyPath: turn_speed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1294310792863715289, guid: 82499092fea854d57b1dd032f593f35c, type: 3}
       propertyPath: camera_script
       value: 
       objectReference: {fileID: 963194229}
@@ -16698,7 +16706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1294310792863715290, guid: 82499092fea854d57b1dd032f593f35c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.57
+      value: 35.68
       objectReference: {fileID: 0}
     - target: {fileID: 1294310792863715290, guid: 82499092fea854d57b1dd032f593f35c, type: 3}
       propertyPath: m_LocalPosition.y

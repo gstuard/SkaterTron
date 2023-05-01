@@ -37,8 +37,13 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     public float jumpForce = 7.5f, gravityMod = 2.5f;
 
-    public bool isGrounded;
+    public bool isGrounded; // GCom: should be private?
     public LayerMask groundLayers;
+
+    //NEWER VARIABLES *-------------------------------------*
+
+    private bool isAlive = true;
+    public float turnFactor;
 
     //NEW VARIABLES END *-------------------------------------*
 
@@ -105,9 +110,9 @@ public class Skateboard : MonoBehaviourPunCallbacks
             movement.y = yVel;
 
 
-            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + (moveDir.x * 2), transform.rotation.eulerAngles.z);
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + (moveDir.x * turnFactor), transform.rotation.eulerAngles.z);
 
-
+            //GCom: do we need a ray here? or do we want to use floor ray for that maybe?
             if (charCon.isGrounded)
             {
                 movement.y = 0f;
@@ -131,32 +136,33 @@ public class Skateboard : MonoBehaviourPunCallbacks
                 activeMoveSpeed = moveSpeed;
             }
 
+            movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
 
-        //Dies Function
-        if (Dies())
-        {
-            Debug.Log("Dead");
-            Explode();
+
+            if (isAlive)
+            {
+                CheckDeath();
+                charCon.Move(movement * Time.deltaTime);
+            }
         }
-
-        movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
-
-        charCon.Move(movement * Time.deltaTime);
-    }
 
         //NEW CODE *---------------------------------------------------*  
     }
 
 
-    void Explode()
+    void ExplodeAnimation()
     {
         var exp = GetComponentInChildren<ParticleSystem>();
         exp.Play();
-        Destroy(gameObject, 2.0f);
+        camera_script.max_distance *= 3f;
+        camera_script.max_height *= 2f;
+        camera_script.targetIsAlive = false;
+        //Destroy(gameObject, 2.0f);
+        //camera_script.max_pitch = 15f;
     }
 
 
-    bool Dies()
+    void CheckDeath()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
         Ray ray = new Ray(origin, transform.forward);
@@ -164,9 +170,11 @@ public class Skateboard : MonoBehaviourPunCallbacks
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, .6f, beam_layer))
         {
-            return true;
+            isAlive = false;
+            ExplodeAnimation();
+            GetComponent<Material>().color = Color.clear;
         }
-        return false;
+        isAlive = true;
     }
 
 

@@ -58,11 +58,28 @@ public class FloorController : MonoBehaviour
                 }
                 else
                 {
-                    // pins[pin_index].GetComponent<Renderer>().sharedmaterial = dwauhaiwhd;
-                    float new_y = pins[pin_index].position.y + pin_speed * Time.deltaTime;
+                    // pins[pin_index].GetComponent<Renderer>().sharedmaterial = red; // OR blue, somehow
+                    float new_y = Mathf.MoveTowards(pins[pin_index].position.y, pin_height, pin_speed);
                     pins[pin_index].position = new Vector3(pins[pin_index].position.x, new_y, pins[pin_index].position.z);
                 }
             }
         }
+    }
+
+
+    void ClearMap()
+    {
+        int blocks = transform.childCount;
+        int chunks = 64;
+        int beams = 100;
+
+        //Transform block1 = GetComponentInChildren<Transform>();
+        //int chunks = block1.childCount;
+
+        //Transform chunk1 = GetComponentInChildren<Transform>();
+        //int beams = chunk1.childCount;
+
+        //GetComponentInChildren<>
+
     }
 }
