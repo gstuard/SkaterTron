@@ -18,20 +18,35 @@ public class Skateboard : MonoBehaviourPunCallbacks
     public Camera1 camera_script;
 
     internal Vector3 direction;
-    internal Rigidbody rb;
 
     public GameObject FloorController;
 
-    private Camera cam;
-
     RaycastHit[] raycasts;
     Vector3 last_location;
+
+    //NEW VARIABLES *-------------------------------------*
+    public Transform viewPoint;
+
+    public float moveSpeed = 5f, runSpeed = 8f;
+    private float activeMoveSpeed;
+    private Vector3 moveDir, movement;
+
+    public CharacterController charCon;
+
+    private Camera cam;
+
+    public float jumpForce = 7.5f, gravityMod = 2.5f;
+
+    public bool isGrounded;
+    public LayerMask groundLayers;
+
+    //NEW VARIABLES END *-------------------------------------*
+
 
     // Controls
     public KeyCode right = KeyCode.RightArrow;
     public KeyCode left = KeyCode.LeftArrow;
     public KeyCode jump = KeyCode.Space;
-    public KeyCode boost = KeyCode.X;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +55,6 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
         cam = Camera.main;
 
-        rb = GetComponent<Rigidbody>();
         direction = Vector3.forward;
     }
 
@@ -59,46 +73,54 @@ public class Skateboard : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        /*
+            //turns
+            if (Input.GetKey(right))
+             {
+                 Turn(Time.deltaTime * turn_speed);
+             }
+             if (Input.GetKey(left))
+             {
+                 Turn(-Time.deltaTime * turn_speed);
+             }
+        */
+        //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
-            if (sharp_turns)
+            moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
+            if (Input.GetKey(KeyCode.LeftShift))            //Checks if player is pressing left shift for sprint
+
             {
-                if (Input.GetKeyUp(right))
-                {
-                    Turn(90f);
-                }
-                if (Input.GetKeyUp(left))
-                {
-                    Turn(-90f);
-                }
+               activeMoveSpeed = runSpeed;
             }
-            else
+            else                                            //Else normal movement speed
             {
-                if (Input.GetKey(right))
-                {
-                    Turn(Time.deltaTime * turn_speed);
-                }
-                if (Input.GetKey(left))
-                {
-                    Turn(-Time.deltaTime * turn_speed);
-                }
+                activeMoveSpeed = moveSpeed;
             }
 
-            if (Input.GetKeyUp(KeyCode.Space) && jump_timer <= 0)
+
+            float yVel = movement.y;
+            movement = (transform.forward) * activeMoveSpeed;
+            movement.y = yVel;
+
+
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + (moveDir.x * 2), transform.rotation.eulerAngles.z);
+
+
+            if (charCon.isGrounded)
             {
-                jump_timer = 1.0f;
-                rb.velocity = new Vector3(rb.velocity.x, jumpStrength, rb.velocity.z);
-            }
-            if (jump_timer > 0)
-            {
-                jump_timer -= Time.deltaTime;
+                movement.y = 0f;
             }
 
-            rb.velocity = new Vector3(transform.forward.x * speed, rb.velocity.y, transform.forward.z * speed);
-
-            if (Input.GetKey(KeyCode.X))
+            if (Input.GetButtonDown("Jump") && charCon.isGrounded)
             {
-                speed = base_speed * 1.75f;
+                movement.y = jumpForce;
+            }
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                activeMoveSpeed = runSpeed;
             }
             else
             {
@@ -106,15 +128,23 @@ public class Skateboard : MonoBehaviourPunCallbacks
                 CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
                 CastFloorRay(new Vector3(0.1f, 0, -0.1f));
                 CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
-                speed = base_speed;
+                activeMoveSpeed = moveSpeed;
             }
 
-            if (Dies())
-            {
-                Debug.Log("Dead");
-                Explode();
-            }
+
+        //Dies Function
+        if (Dies())
+        {
+            Debug.Log("Dead");
+            Explode();
         }
+
+        movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
+
+        charCon.Move(movement * Time.deltaTime);
+    }
+
+        //NEW CODE *---------------------------------------------------*  
     }
 
 
@@ -132,7 +162,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
         Ray ray = new Ray(origin, transform.forward);
         Debug.DrawRay(origin, transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, .5f, beam_layer))
+        if (Physics.Raycast(ray, out hit, .6f, beam_layer))
         {
             return true;
         }
@@ -146,7 +176,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
         Ray ray = new Ray(origin, Vector3.down);
         Debug.DrawRay(origin, Vector3.down);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, .5f, beam_layer))
+        if (Physics.Raycast(ray, out hit, 3.5f, beam_layer))
         {
             FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform, true);
         }
@@ -160,10 +190,5 @@ public class Skateboard : MonoBehaviourPunCallbacks
     private void LateUpdate()
     {
 
-        if (photonView.IsMine)
-        {
-            cam.transform.position = transform.position;
-            cam.transform.rotation = transform.rotation;
-        }
     }
 }
