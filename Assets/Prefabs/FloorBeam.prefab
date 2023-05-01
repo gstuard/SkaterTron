@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2605492697537611493}
   m_Layer: 6
   m_Name: FloorBeam
-  m_TagString: Untagged
+  m_TagString: Beam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

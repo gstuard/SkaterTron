@@ -45,6 +45,11 @@ public class Skateboard : MonoBehaviourPunCallbacks
     private bool isAlive = true;
     public float turnFactor;
 
+    private Material material;
+
+    public Vector3 starting_location;
+    private float spawn_timer = 0;
+
     //NEW VARIABLES END *-------------------------------------*
 
 
@@ -56,6 +61,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        material = GetComponent<Material>();
         speed = base_speed;
 
         cam = Camera.main;
@@ -75,6 +81,18 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     }
 
+
+    public void Spawn(float time)
+    {
+        spawn_timer = time;
+        isAlive = true;
+        transform.position = starting_location;
+        //camera_script.transform.LookAt(GameObject.Find("InvisibleFloor").transform);
+        // add a way to face the right way? juice GCom:
+        camera_script.ResetView();
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -92,10 +110,15 @@ public class Skateboard : MonoBehaviourPunCallbacks
         //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
+            spawn_timer -= Time.deltaTime;
+            if (Input.GetButtonDown("Jump"))
+            {
+                spawn_timer = 0;
+            }
+
             moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
             if (Input.GetKey(KeyCode.LeftShift))            //Checks if player is pressing left shift for sprint
-
             {
                activeMoveSpeed = runSpeed;
             }
@@ -104,11 +127,9 @@ public class Skateboard : MonoBehaviourPunCallbacks
                 activeMoveSpeed = moveSpeed;
             }
 
-
             float yVel = movement.y;
             movement = (transform.forward) * activeMoveSpeed;
             movement.y = yVel;
-
 
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + (moveDir.x * turnFactor), transform.rotation.eulerAngles.z);
 
@@ -138,8 +159,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
             movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
 
-
-            if (isAlive)
+            if (isAlive && spawn_timer <= 0)
             {
                 CheckDeath();
                 charCon.Move(movement * Time.deltaTime);
@@ -157,8 +177,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
         camera_script.max_distance *= 3f;
         camera_script.max_height *= 2f;
         camera_script.targetIsAlive = false;
-        //Destroy(gameObject, 2.0f);
-        //camera_script.max_pitch = 15f;
+
+        material.SetFloat("_Alpha", 0.5f); // WHY ISNT THIS WORKING GCom
     }
 
 
@@ -172,7 +192,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
         {
             isAlive = false;
             ExplodeAnimation();
-            GetComponent<Material>().color = Color.clear;
+            //GameObject.Find("Sweeper").GetComponent<Sweeper>().isActive = true;// this is not working rn but that is fine
         }
         isAlive = true;
     }

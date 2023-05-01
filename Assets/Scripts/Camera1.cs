@@ -11,8 +11,10 @@ public class Camera1 : MonoBehaviour
     public float rotationSpeed;
 
     public float max_height;
+    private float orig_height;
     private float height;
     public float max_distance;
+    private float orig_distance;
     private float distance;
 
     public bool targetIsAlive;
@@ -24,9 +26,21 @@ public class Camera1 : MonoBehaviour
     void Start()
     {
         distance = max_distance;
+        orig_distance = max_distance;
         height = max_height;
+        orig_height = max_height;
         targetIsAlive = true;
     }
+
+
+    public void ResetView()
+    {
+        max_height = orig_height;
+        height = orig_height;
+        max_distance = orig_distance;
+        distance = orig_distance;
+    }
+
 
     void Update()
     {

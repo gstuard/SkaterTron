@@ -6,6 +6,8 @@ public class FloorController : MonoBehaviour
 {
     public bool floor_active;
 
+    public Sweeper sweeper;
+
     public static int MaximumRisingPins = 320;
     public static int MaximumBufferedPins = 40;
 
@@ -63,7 +65,19 @@ public class FloorController : MonoBehaviour
                     pins[pin_index].position = new Vector3(pins[pin_index].position.x, new_y, pins[pin_index].position.z);
                 }
             }
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                ResetGame();
+            }
         }
+    }
+
+
+    void ResetGame()
+    {
+        sweeper.isActive = true;
+        pins = new Transform[MaximumRisingPins];
+        pin_buffer = new Transform[MaximumBufferedPins];
     }
 
 
@@ -79,7 +93,16 @@ public class FloorController : MonoBehaviour
         //Transform chunk1 = GetComponentInChildren<Transform>();
         //int beams = chunk1.childCount;
 
-        //GetComponentInChildren<>
+        for (int block_index = 0; block_index < blocks; block_index++)
+        {
+            for (int chunk_index = 0; chunk_index < chunks; chunk_index++)
+            {
+                for (int beam_index = 0; beam_index < beams; beam_index++)
+                {
+                    // might use this?
+                }
+            }
+        }
 
     }
 }
