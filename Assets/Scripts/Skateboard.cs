@@ -189,6 +189,10 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     private void LateUpdate()
     {
-
+        if (photonView.IsMine)
+        {
+            cam.transform.position = viewPoint.position;
+            cam.transform.rotation = viewPoint.rotation;
+        }
     }
 }
