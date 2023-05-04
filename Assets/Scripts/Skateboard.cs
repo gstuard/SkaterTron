@@ -5,8 +5,6 @@ using Photon.Pun;
 
 public class Skateboard : MonoBehaviourPunCallbacks
 {
-    public bool sharp_turns;
-
     public float base_speed;
     internal float speed;
     public float turn_speed;
@@ -49,7 +47,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
     public Vector3 starting_location;
     private float spawn_timer = 0;
 
-    //NEW VARIABLES END *-------------------------------------*
+    //NEW/NEWER VARIABLES END *-------------------------------------*
 
 
     // Controls
