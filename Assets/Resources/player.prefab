@@ -103,9 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -121,7 +119,7 @@ MonoBehaviour:
   groundLayers:
     serializedVersion: 2
     m_Bits: 4
-  turnFactor: 90
+  turnFactor: 0.5
   starting_location: {x: 0, y: 0, z: 0}
   right: 275
   left: 276

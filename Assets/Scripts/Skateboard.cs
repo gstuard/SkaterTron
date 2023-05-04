@@ -7,7 +7,6 @@ public class Skateboard : MonoBehaviourPunCallbacks
 {
     public float base_speed;
     internal float speed;
-    public float turn_speed;
     public float jumpStrength;
     internal float jump_timer = 0f;
 
@@ -93,17 +92,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        /*
-            //turns
-            if (Input.GetKey(right))
-             {
-                 Turn(Time.deltaTime * turn_speed);
-             }
-             if (Input.GetKey(left))
-             {
-                 Turn(-Time.deltaTime * turn_speed);
-             }
-        */
+    
         //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
