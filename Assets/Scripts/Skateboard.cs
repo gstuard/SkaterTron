@@ -89,10 +89,10 @@ public class Skateboard : MonoBehaviourPunCallbacks
     }
 
 
-    // Update is called once per frame
-    void Update()
+    // Fixed Update
+    void FixedUpdate()
     {
-    
+     
         //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
