@@ -15,7 +15,6 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     public LayerMask beam_layer;
 
-    public Camera1 camera_script;
 
     internal Vector3 direction;
 
@@ -89,7 +88,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
         transform.position = starting_location;
         //camera_script.transform.LookAt(GameObject.Find("InvisibleFloor").transform);
         // add a way to face the right way? juice GCom:
-        camera_script.ResetView();
+        //camera_script.ResetView();
     }
 
 
@@ -174,9 +173,9 @@ public class Skateboard : MonoBehaviourPunCallbacks
     {
         var exp = GetComponentInChildren<ParticleSystem>();
         exp.Play();
-        camera_script.max_distance *= 3f;
-        camera_script.max_height *= 2f;
-        camera_script.targetIsAlive = false;
+        //camera_script.max_distance *= 3f;
+        //camera_script.max_height *= 2f;
+        //camera_script.targetIsAlive = false;
 
         material.SetFloat("_Alpha", 0.5f); // WHY ISNT THIS WORKING GCom
     }

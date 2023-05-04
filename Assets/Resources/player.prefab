@@ -110,9 +110,8 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  camera_script: {fileID: 0}
-  FloorController: {fileID: 0}
-  viewPoint: {fileID: 0}
+  FloorController: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+  viewPoint: {fileID: 7009225357829932427}
   moveSpeed: 5
   runSpeed: 8
   charCon: {fileID: 1294310792863715303}
@@ -123,6 +122,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4
   turnFactor: 0
+  starting_location: {x: 0, y: 0, z: 0}
   right: 275
   left: 276
   jump: 32
@@ -5104,11 +5104,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7878617061658104184}
-  m_LocalRotation: {x: -0.17644791, y: -0.68473804, z: 0.17644791, w: 0.68473804}
-  m_LocalPosition: {x: -0, y: 0.803, z: 2.455}
+  m_LocalRotation: {x: 0.22969428, y: 0.00000008940696, z: -0.00000002235174, w: 0.9732629}
+  m_LocalPosition: {x: 0, y: 1, z: -4.14}
   m_LocalScale: {x: 1.9999992, y: 1, z: 1.9999992}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1294310792863715290}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 28.9}
+  m_LocalEulerAnglesHint: {x: 26.558, y: 0, z: 0}
