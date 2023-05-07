@@ -206,9 +206,11 @@ public class Skateboard : MonoBehaviourPunCallbacks
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 3.5f, beam_layer))
         {
-            FloorController.GetPhotonView().RPC("Add_Pin", RpcTarget.All, hit.collider.transform);
+            //FloorController.GetPhotonView().RPC("Add_Pin", RpcTarget.All, hit.collider.transform);
 
-            //FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform, true);
+            //FloorController.GetPhotonView().RPC("TestPunRPC", RpcTarget.All, hit.collider.gameObject.GetInstanceID());
+            
+            FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform);
 
             //Opponent.GetComponent<Skateboard>().Add_Pin(hit.collider.transform, true);
         }
