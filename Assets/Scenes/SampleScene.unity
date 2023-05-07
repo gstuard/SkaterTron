@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e1946f1b7e74356bd4b69c5ed08466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 5
   pin_height: 13
   isActive: 0
   startx: 19
