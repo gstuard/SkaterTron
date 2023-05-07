@@ -264,9 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -473,9 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -727,9 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -936,9 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -1277,9 +1269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -1746,9 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -2000,9 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
@@ -2094,6 +2080,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6607695110386712310, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_TagString
+      value: Beam
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607695111073791862, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_TagString
+      value: Beam
+      objectReference: {fileID: 0}
     - target: {fileID: 6607695111633891748, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: sweeper
       value: 
@@ -2101,6 +2095,10 @@ PrefabInstance:
     - target: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: m_Name
       value: Floor Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_TagString
+      value: Beam
       objectReference: {fileID: 0}
     - target: {fileID: 6607695111633891751, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: m_RootOrder
@@ -2146,6 +2144,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6607695111657713087, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_TagString
+      value: Beam
+      objectReference: {fileID: 0}
+    - target: {fileID: 6607695111938944327, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_TagString
+      value: Beam
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
 --- !u!33 &8724920056292434752
@@ -2168,9 +2174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4772cb9e849c94bbb928daba06bc6f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharp_turns: 0
   base_speed: 4
-  turn_speed: 50
   jumpStrength: 4
   beam_layer:
     serializedVersion: 2
