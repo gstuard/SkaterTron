@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &55332768 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-  m_PrefabInstance: {fileID: 6607695111655112197}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &117635020
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +264,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -476,7 +471,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -728,7 +723,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -935,7 +930,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -1274,7 +1269,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -1741,7 +1736,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -1993,7 +1988,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
@@ -2059,46 +2054,16 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1855584855}
   m_Mesh: {fileID: -2432090755550338912, guid: 9b2d8f319eeb44d06bdb90eaaa5bbcf3, type: 3}
---- !u!64 &1981396297765461458
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8724920056292434810}
-  m_Material: {fileID: 13400000, guid: 03a188505474246ef803801d44a38b20, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: 9b2d8f319eeb44d06bdb90eaaa5bbcf3, type: 3}
---- !u!1001 &6607695111655112197
+--- !u!1001 &1881326858
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6607695110386712310, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-      propertyPath: m_TagString
-      value: Beam
-      objectReference: {fileID: 0}
-    - target: {fileID: 6607695111073791862, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-      propertyPath: m_TagString
-      value: Beam
-      objectReference: {fileID: 0}
-    - target: {fileID: 6607695111633891748, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-      propertyPath: sweeper
-      value: 
-      objectReference: {fileID: 555593765}
     - target: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: m_Name
-      value: Floor Controller
-      objectReference: {fileID: 0}
-    - target: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-      propertyPath: m_TagString
-      value: Beam
+      value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 6607695111633891751, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: m_RootOrder
@@ -2144,20 +2109,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6607695111657713087, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-      propertyPath: m_TagString
-      value: Beam
-      objectReference: {fileID: 0}
-    - target: {fileID: 6607695111938944327, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
-      propertyPath: m_TagString
-      value: Beam
-      objectReference: {fileID: 0}
-    - target: {fileID: 6736404640787579695, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+    - target: {fileID: 6874012520469547546, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: sceneViewId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8101321775434078851, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: sweeper
+      value: 
+      objectReference: {fileID: 555593765}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+--- !u!64 &1981396297765461458
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8724920056292434810}
+  m_Material: {fileID: 13400000, guid: 03a188505474246ef803801d44a38b20, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 9b2d8f319eeb44d06bdb90eaaa5bbcf3, type: 3}
 --- !u!33 &8724920056292434752
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2183,7 +2158,7 @@ MonoBehaviour:
   beam_layer:
     serializedVersion: 2
     m_Bits: 64
-  FloorController: {fileID: 55332768}
+  FloorController: {fileID: 0}
   viewPoint: {fileID: 963194228}
   moveSpeed: 5
   runSpeed: 8
