@@ -171,15 +171,12 @@ public class Skateboard : MonoBehaviourPunCallbacks
             }
             else
             {
-                CastFloorRay(new Vector3(0.1f, 0, 0.1f));
-                CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
-                CastFloorRay(new Vector3(0.1f, 0, -0.1f));
-                CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
+
                 activeMoveSpeed = moveSpeed;
             }
 
             // Update UI (might move so it's not necessarilly updating every frame, only when it changes
-            boostPanel.SetBoost(maxBoost, (int)currentBoost);
+            //boostPanel.SetBoost(maxBoost, (int)currentBoost);
             // Here is where would update score once that's implemented :P
             // Ideally only update it when a match finishes
             // scorePanel.UpdateWins(wins);

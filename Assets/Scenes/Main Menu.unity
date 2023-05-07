@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0014821443, g: 0.001356025, b: 0.0012915672, a: 1}
+  m_IndirectSpecularColor: {r: 0.01609639, g: 0.014628816, b: 0.013830393, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4803,7 +4803,7 @@ MonoBehaviour:
   theRoomButton: {fileID: 762966480}
   nameInputScreen: {fileID: 994029124}
   nameInput: {fileID: 2041066834}
-  levelToPlay: SampleScene
+  levelToPlay: GameScene
   startButton: {fileID: 1141604367}
   roomTestButton: {fileID: 1517566817}
 --- !u!82 &1580285669
@@ -5823,6 +5823,7 @@ GameObject:
   - component: {fileID: 1804129928}
   - component: {fileID: 1804129927}
   - component: {fileID: 1804129926}
+  - component: {fileID: 1804129929}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5896,6 +5897,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1804129929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804129925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6087c96fe1b43b5b51a5ed11f58c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xDrift: 1
+  yDrift: 2
+  zDrift: 0
 --- !u!1 &1823305583
 GameObject:
   m_ObjectHideFlags: 0
