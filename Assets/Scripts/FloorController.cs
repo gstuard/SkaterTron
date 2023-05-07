@@ -30,8 +30,15 @@ public class FloorController : MonoBehaviourPunCallbacks
 
     }
 
+    //[PunRPC]
+    //public void TestPunRPC(int instanceID)
+    //{
+    //    Debug.Log("Works across network!" + instanceID);
+        
+    //}
 
-    [PunRPC]
+
+    //[PunRPC]
     public void Add_Pin(Transform new_pin, bool is_red = true)
     {
         //if (is_red)
