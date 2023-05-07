@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class FloorController : MonoBehaviour
+public class FloorController : MonoBehaviourPunCallbacks
 {
     public bool floor_active;
 
@@ -29,7 +30,9 @@ public class FloorController : MonoBehaviour
 
     }
 
-    public void Add_Pin(Transform new_pin, bool is_red)
+
+    [PunRPC]
+    public void Add_Pin(Transform new_pin, bool is_red = true)
     {
         //if (is_red)
         //{
@@ -46,6 +49,7 @@ public class FloorController : MonoBehaviour
         pins[array_index++] = pin_buffer[buffer_index];
         pin_buffer[buffer_index++] = new_pin;
     }
+
 
     // Update is called once per frame
     void Update()

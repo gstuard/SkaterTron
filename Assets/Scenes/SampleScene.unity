@@ -2061,6 +2061,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2055220624099118326, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_UseLocal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055220624099118326, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
+      propertyPath: m_SynchronizeScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6607695111633891749, guid: f1f0623c6c4244d688a0f16216f06077, type: 3}
       propertyPath: m_Name
       value: Floor

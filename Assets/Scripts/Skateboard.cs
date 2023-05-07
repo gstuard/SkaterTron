@@ -46,6 +46,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
     public Vector3 starting_location;
     private float spawn_timer = 0;
 
+    //public GameObject Opponent;
+
     //NEW/NEWER VARIABLES END *-------------------------------------*
 
 
@@ -65,6 +67,16 @@ public class Skateboard : MonoBehaviourPunCallbacks
         direction = Vector3.forward;
 
         FloorController = GameObject.Find("Floor Controller"); // fixed floor not working on spawn
+
+        //GameObject[] Opponents = GameObject.FindGameObjectsWithTag("Player");
+        //if (Opponents[0] == this)
+        //{
+        //    Opponent = Opponents[1];
+        //}
+        //else
+        //{
+        //    Opponent = Opponents[0];
+        //}
     }
 
     //void AddTrail(Vector3 new_location)
@@ -194,9 +206,21 @@ public class Skateboard : MonoBehaviourPunCallbacks
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 3.5f, beam_layer))
         {
-            FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform, true);
+            FloorController.GetPhotonView().RPC("Add_Pin", RpcTarget.All, hit.collider.transform);
+
+            //FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform, true);
+
+            //Opponent.GetComponent<Skateboard>().Add_Pin(hit.collider.transform, true);
         }
     }
+
+
+    public void Add_Pin(Transform new_pin, bool is_red)
+    {
+        FloorController.GetComponent<FloorController>().Add_Pin(new_pin, is_red);
+    }
+
+
 
     //private void OnCollisionExit(Collision collision)
     //{
