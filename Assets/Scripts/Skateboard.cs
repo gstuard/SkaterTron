@@ -63,6 +63,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
         cam = Camera.main;
 
         direction = Vector3.forward;
+
+        FloorController = GameObject.Find("Floor Controller"); // fixed floor not working on spawn
     }
 
     //void AddTrail(Vector3 new_location)
