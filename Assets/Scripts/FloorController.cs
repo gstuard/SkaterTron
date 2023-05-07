@@ -24,18 +24,30 @@ public class FloorController : MonoBehaviourPunCallbacks
     public Material red;
     public Material blue;
 
+    public LayerMask beamLayer;
+
     // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    //[PunRPC]
-    //public void TestPunRPC(int instanceID)
-    //{
-    //    Debug.Log("Works across network!" + instanceID);
-        
-    //}
+    [PunRPC]
+    public void TestPunRPC(Vector3 position)
+    {
+        //Debug.Log("Works across network! " + position);
+
+
+        Vector3 origin = new Vector3(position.x, position.y + 1.5f, position.z);
+        Ray ray = new Ray(origin, Vector3.down);
+        Debug.DrawRay(origin, Vector3.down, Color.red, 1);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 3.5f, beamLayer))
+        {
+            Add_Pin(hit.collider.transform);
+            Debug.Log("Hits for the second time!!!");
+        }
+    }
 
 
     //[PunRPC]
@@ -45,6 +57,7 @@ public class FloorController : MonoBehaviourPunCallbacks
         //{
         //    transform.GetComponent<Renderer>().sharedMaterial = red;
         //}
+
         if (array_index >= MaximumRisingPins)
         {
             array_index = 0;

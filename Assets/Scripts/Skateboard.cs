@@ -202,15 +202,14 @@ public class Skateboard : MonoBehaviourPunCallbacks
     {
         Vector3 origin = new Vector3(transform.position.x + offset.x, transform.position.y + offset.y, transform.position.z + offset.z);
         Ray ray = new Ray(origin, Vector3.down);
-        Debug.DrawRay(origin, Vector3.down);
+        //Debug.DrawRay(origin, Vector3.down);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 3.5f, beam_layer))
         {
-            //FloorController.GetPhotonView().RPC("Add_Pin", RpcTarget.All, hit.collider.transform);
+            Vector3 location = hit.collider.transform.position;
+            FloorController.GetPhotonView().RPC("TestPunRPC", RpcTarget.All, location);
 
-            //FloorController.GetPhotonView().RPC("TestPunRPC", RpcTarget.All, hit.collider.gameObject.GetInstanceID());
-            
-            FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform);
+            //FloorController.GetComponent<FloorController>().Add_Pin(hit.collider.transform);
 
             //Opponent.GetComponent<Skateboard>().Add_Pin(hit.collider.transform, true);
         }
