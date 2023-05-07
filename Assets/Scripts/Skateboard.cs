@@ -50,17 +50,31 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     //NEW/NEWER VARIABLES END *-------------------------------------*
 
+    // Boost Settings
+    public UIBoost boostPanel;
+    public int maxBoost = 50;
+    public int boostUse = 20;
+    public int boostRefresh = 10;
+    public int refreshWait = 1;
+    private float currentBoost;
+    private bool refreshing = false;
+
+    // Score UI
+    public UIScore scorePanel;
+    private int wins = 0;
 
     // Controls
     public KeyCode right = KeyCode.RightArrow;
     public KeyCode left = KeyCode.LeftArrow;
     public KeyCode jump = KeyCode.Space;
+    public KeyCode boost = KeyCode.LeftShift;
 
     // Start is called before the first frame update
     void Start()
     {
         material = GetComponent<Material>();
         speed = base_speed;
+        currentBoost = maxBoost;
 
         cam = Camera.main;
 
@@ -118,7 +132,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
             moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-            if (Input.GetKey(KeyCode.LeftShift))            //Checks if player is pressing left shift for sprint
+            if (Input.GetKey(boost))            //Checks if player is pressing left shift for sprint
             {
                activeMoveSpeed = runSpeed;
             }
@@ -147,6 +161,13 @@ public class Skateboard : MonoBehaviourPunCallbacks
             if (Input.GetKey(KeyCode.LeftShift))
             {
                 activeMoveSpeed = runSpeed;
+                currentBoost -= boostUse * Time.deltaTime;
+                refreshing = false;
+                StopCoroutine(BoostRecharge());
+            }
+            else if (Input.GetKeyUp(boost) && !refreshing)
+            {
+                StartCoroutine(BoostRecharge());
             }
             else
             {
@@ -156,6 +177,12 @@ public class Skateboard : MonoBehaviourPunCallbacks
                 CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
                 activeMoveSpeed = moveSpeed;
             }
+
+            // Update UI (might move so it's not necessarilly updating every frame, only when it changes
+            boostPanel.SetBoost(maxBoost, (int)currentBoost);
+            // Here is where would update score once that's implemented :P
+            // Ideally only update it when a match finishes
+            // scorePanel.UpdateWins(wins);
 
             movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
 
@@ -234,6 +261,22 @@ public class Skateboard : MonoBehaviourPunCallbacks
         {
             cam.transform.position = viewPoint.position;
             cam.transform.rotation = viewPoint.rotation;
+        }
+    }
+
+    IEnumerator BoostRecharge()
+    {
+        refreshing = true;
+        yield return new WaitForSeconds(refreshWait);
+        while (refreshing)
+        {
+            currentBoost += boostRefresh * Time.deltaTime;
+            if (currentBoost >= maxBoost)
+            {
+                currentBoost = maxBoost;
+                refreshing = false;
+            }
+            yield return null;
         }
     }
 }
