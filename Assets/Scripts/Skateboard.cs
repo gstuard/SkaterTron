@@ -158,7 +158,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
                 movement.y = jumpForce;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(boost) && currentBoost > 0)
             {
                 activeMoveSpeed = runSpeed;
                 currentBoost -= boostUse * Time.deltaTime;
