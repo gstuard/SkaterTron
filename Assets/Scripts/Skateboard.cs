@@ -70,6 +70,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
     public KeyCode jump = KeyCode.Space;
     public KeyCode boost = KeyCode.LeftShift;
 
+    public string[] whosLeft = new string[8];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,6 +87,10 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
         Player[] players = PhotonNetwork.PlayerList;
 
+        for (int i = 0; i < players.Length; i++)
+        {
+            whosLeft[i] = players[i].NickName;
+        }
         //GameObject[] Opponents = GameObject.FindGameObjectsWithTag("Player");
         //if (Opponents[0] == this)
         //{
@@ -265,27 +271,16 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
         if (photonView.IsMine)
         {
-            if (isAlive)
-            {
+  
                 cam.transform.position = viewPoint.position;
                 cam.transform.rotation = viewPoint.rotation;
-            }
-            else
-            {
-                if (cam.transform.position.y < 5) {
-                    cam.transform.position = viewPoint.position - new Vector3(0, 0.005f, 0);
-                 }
-                else
-                {
-                    
-                }
-
-                cam.transform.rotation = viewPoint.rotation;
-
-            }
+          
         }
 
-        Debug.Log(PhotonNetwork.NickName);
+        for (int i = 0; i < 8; i++)
+        {
+            Debug.Log(whosLeft[i]);
+        }
     }
 
     IEnumerator BoostRecharge()
