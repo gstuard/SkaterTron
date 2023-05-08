@@ -53,6 +53,9 @@ MonoBehaviour:
   pin_low_height: 0
   red: {fileID: 2100000, guid: c7c2af98d545e4a69b0c7b557e1118f6, type: 2}
   blue: {fileID: 2100000, guid: d1a6cc3d7f5914a0780950a2d0100436, type: 2}
+  beamLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &2055220624099118326
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -45,7 +45,7 @@ public class FloorController : MonoBehaviourPunCallbacks
         if (Physics.Raycast(ray, out hit, 3.5f, beamLayer))
         {
             Add_Pin(hit.collider.transform);
-            Debug.Log("Hits for the second time!!!");
+            //Debug.Log("Hits for the second time!!!");
         }
     }
 
