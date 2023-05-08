@@ -51,6 +51,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     //NEW/NEWER VARIABLES END *-------------------------------------*
 
+    public string mainMenu = "Main Menu";
+
     // Boost Settings
     public UIBoost boostPanel;
     public int maxBoost = 50;
@@ -69,6 +71,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
     public KeyCode left = KeyCode.LeftArrow;
     public KeyCode jump = KeyCode.Space;
     public KeyCode boost = KeyCode.LeftShift;
+    public KeyCode exit = KeyCode.Escape;
 
     public string[] whosLeft = new string[8];
 
@@ -129,10 +132,14 @@ public class Skateboard : MonoBehaviourPunCallbacks
     // Fixed Update
     void FixedUpdate()
     {
-
         //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
+            if (Input.GetKey(exit))
+            {
+                PhotonNetwork.LoadLevel(mainMenu);
+            }
+
             spawn_timer -= Time.deltaTime;
             if (Input.GetButtonDown("Jump"))
             {
