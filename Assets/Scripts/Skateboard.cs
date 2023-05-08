@@ -222,10 +222,16 @@ public class Skateboard : MonoBehaviourPunCallbacks
     void CheckDeath()
     {
         Vector3 origin = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
-        Ray ray = new Ray(origin, transform.forward);
+        Ray rayCenter = new Ray(origin, transform.forward);
+        Ray rayRight = new Ray(origin + new Vector3 (.1f,0f,0f), transform.forward);
+        Ray rayLeft = new Ray(origin + new Vector3(-.1f, 0f, 0f), transform.forward);
         Debug.DrawRay(origin, transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, .6f, beam_layer))
+        Debug.DrawRay(origin + new Vector3(.1f, 0f, 0f), transform.forward);
+        Debug.DrawRay(origin + new Vector3(-.1f, 0f, 0f), transform.forward);
+        RaycastHit hitCenter;
+        RaycastHit hitLeft;
+        RaycastHit hitRight;
+        if (Physics.Raycast(rayCenter, out hitCenter, .6f, beam_layer) || Physics.Raycast(rayLeft, out hitLeft, .6f, beam_layer) || Physics.Raycast(rayRight, out hitRight, .6f, beam_layer))
         {
             isAlive = false;
             ExplodeAnimation();
