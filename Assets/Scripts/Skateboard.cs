@@ -129,7 +129,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
     // Fixed Update
     void FixedUpdate()
     {
-     
+
         //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
@@ -143,7 +143,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
             if (Input.GetKey(boost))            //Checks if player is pressing left shift for sprint
             {
-               activeMoveSpeed = runSpeed;
+                activeMoveSpeed = runSpeed;
             }
             else                                            //Else normal movement speed
             {
@@ -229,7 +229,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
         {
             isAlive = false;
             ExplodeAnimation();
-
+            removeFromWhosLeft();
             //GameObject.Find("Sweeper").GetComponent<Sweeper>().isActive = true;// this is not working rn but that is fine
         }
         isAlive = true;
@@ -254,7 +254,47 @@ public class Skateboard : MonoBehaviourPunCallbacks
     }
 
 
-    public void Add_Pin(Transform new_pin, bool is_red)
+    [PunRPC]
+    public void removeFromWhosLeft()
+    {
+        string winner = "";
+        int counter = 0;
+
+        for(int i = 0; i < whosLeft.Length; i++)
+        {
+            if (PhotonNetwork.NickName == whosLeft[i])
+            {
+                whosLeft[i] = "";
+            }
+        }
+
+        for (int i = 0; i < whosLeft.Length; i++)
+        {
+            if (whosLeft[i] != "")
+            {
+                counter += 1;
+            }
+        }
+
+        if(counter < 2)
+        {
+            for (int i = 0; i < whosLeft.Length; i++)
+            {
+                if (whosLeft[i] != "")
+                {
+                    winner = whosLeft[i];
+                }
+            }
+
+
+            Debug.Log(winner + "YEAHHHH");
+            //winner is the string
+            //HEREHEREHERE
+        }
+
+    }
+
+        public void Add_Pin(Transform new_pin, bool is_red)
     {
         FloorController.GetComponent<FloorController>().Add_Pin(new_pin, is_red);
     }
