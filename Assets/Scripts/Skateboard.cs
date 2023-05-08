@@ -229,7 +229,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
         {
             isAlive = false;
             ExplodeAnimation();
-            removeFromWhosLeft();
+            photonView.RPC("RemoveFromWhosLeft", RpcTarget.All);
+
             //GameObject.Find("Sweeper").GetComponent<Sweeper>().isActive = true;// this is not working rn but that is fine
         }
         isAlive = true;
@@ -255,7 +256,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
 
     [PunRPC]
-    public void removeFromWhosLeft()
+    public void RemoveFromWhosLeft()
     {
         string winner = "";
         int counter = 0;
@@ -317,10 +318,6 @@ public class Skateboard : MonoBehaviourPunCallbacks
           
         }
 
-        for (int i = 0; i < 8; i++)
-        {
-            Debug.Log(whosLeft[i]);
-        }
     }
 
     IEnumerator BoostRecharge()
