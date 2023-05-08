@@ -220,6 +220,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
         {
             isAlive = false;
             ExplodeAnimation();
+
             //GameObject.Find("Sweeper").GetComponent<Sweeper>().isActive = true;// this is not working rn but that is fine
         }
         isAlive = true;
@@ -258,10 +259,27 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
     private void LateUpdate()
     {
+
         if (photonView.IsMine)
         {
-            cam.transform.position = viewPoint.position;
-            cam.transform.rotation = viewPoint.rotation;
+            if (isAlive)
+            {
+                cam.transform.position = viewPoint.position;
+                cam.transform.rotation = viewPoint.rotation;
+            }
+            else
+            {
+                if (cam.transform.position.y < 5) {
+                    cam.transform.position = viewPoint.position - new Vector3(0, 0.005f, 0);
+                 }
+                else
+                {
+                    
+                }
+
+                cam.transform.rotation = viewPoint.rotation;
+
+            }
         }
     }
 
