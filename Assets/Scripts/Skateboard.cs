@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class Skateboard : MonoBehaviourPunCallbacks
 {
@@ -81,6 +82,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
         direction = Vector3.forward;
 
         FloorController = GameObject.Find("Floor Controller"); // fixed floor not working on spawn
+
+        Player[] players = PhotonNetwork.PlayerList;
 
         //GameObject[] Opponents = GameObject.FindGameObjectsWithTag("Player");
         //if (Opponents[0] == this)
@@ -281,6 +284,8 @@ public class Skateboard : MonoBehaviourPunCallbacks
 
             }
         }
+
+        Debug.Log(PhotonNetwork.NickName);
     }
 
     IEnumerator BoostRecharge()
