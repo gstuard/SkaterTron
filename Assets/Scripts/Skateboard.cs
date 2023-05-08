@@ -135,8 +135,10 @@ public class Skateboard : MonoBehaviourPunCallbacks
         //NEW CODE *---------------------------------------------------*
         if (photonView.IsMine)
         {
-            if (Input.GetKey(exit))
+            if (Input.GetKeyDown(exit))
             {
+                PhotonNetwork.AutomaticallySyncScene = false;
+                PhotonNetwork.LeaveRoom();
                 PhotonNetwork.LoadLevel(mainMenu);
             }
 

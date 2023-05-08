@@ -49,7 +49,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         CloseMenus();
 
-        loadingScreen.SetActive(true);
+        // loadingScreen.SetActive(true);
         loadingText.text = "Connecting To Network...";
 
         PhotonNetwork.ConnectUsingSettings();
