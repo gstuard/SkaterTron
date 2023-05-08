@@ -283,7 +283,7 @@ public class Skateboard : MonoBehaviourPunCallbacks
             }
         }
 
-        if(counter < 2)
+        if(counter >= 0)
         {
             for (int i = 0; i < whosLeft.Length; i++)
             {
