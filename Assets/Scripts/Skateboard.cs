@@ -171,6 +171,10 @@ public class Skateboard : MonoBehaviourPunCallbacks
             }
             else
             {
+                CastFloorRay(new Vector3(0.1f, 0, 0.1f));
+                CastFloorRay(new Vector3(-0.1f, 0, 0.1f));
+                CastFloorRay(new Vector3(0.1f, 0, -0.1f));
+                CastFloorRay(new Vector3(-0.1f, 0, -0.1f));
 
                 activeMoveSpeed = moveSpeed;
             }
