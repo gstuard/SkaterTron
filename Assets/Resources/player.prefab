@@ -120,6 +120,7 @@ MonoBehaviour:
     m_Bits: 4
   turnFactor: 1.3
   starting_location: {x: 0, y: 0, z: 0}
+  mainMenu: Main Menu
   boostPanel: {fileID: 0}
   maxBoost: 50
   boostUse: 20
@@ -130,6 +131,16 @@ MonoBehaviour:
   left: 276
   jump: 32
   boost: 304
+  exit: 27
+  whosLeft:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
 --- !u!64 &8330569905651904846
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -38,6 +38,8 @@ MonoBehaviour:
   - DestroyRpc
   - Add_Pin
   - TestPunRPC
+  - removeFromWhosLeft
+  - RemoveFromWhosLeft
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
